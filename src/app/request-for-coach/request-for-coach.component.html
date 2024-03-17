@@ -1,0 +1,109 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card custom-card">
+          <div class="row no-gutters">
+            <div class="col-md-6">
+              <img src="./../../assets/becomecoach.jpeg" class="card-img" alt="Placeholder Image">
+            </div>
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="card-title">Help other Ismailis grow and reach their career potential</h5>
+                <p class="card-text">We’re in search for coaches and mentors to help Ismaili professionals and students get ready for their careers and learn what it takes to be a leader – with your help, we can help build each other.</p>
+                <button type="button" class="btn" (click)="openModal()">
+                  Become a coach
+                </button>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" #coachingModal tabindex="-1" role="dialog" aria-labelledby="coachingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title center text-center" id="exampleModalLabel">How can we assist you?</h5>
+        </div>
+        <div class="modal-body">
+          <p>If you require a 1-on-1 session or need more personalized assistance, you can submit a request to meet virtually with one of our coaches. As we have a lot of submissions, please allow 24 to 48 hours for us to respond to your request.</p>
+          <div class="container">
+            <div class="form-group input-label">
+              <select class="form-control mb-3 with-arrow" id="topicOfAssistance" [(ngModel)]="selectedTopic" (change)="onTopicSelectionChange()" required>
+                <option value="Leadership" selected>Leadership Advice</option>
+                <option value="Finance">Finance</option>
+                <!-- Add more options as needed -->
+              </select>
+              
+            </div>
+          
+            <!-- Render different sets of input fields based on selected topic -->
+            <div *ngIf="selectedTopic === 'Leadership'">
+              <!-- Input fields for assistance -->
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="assistanceInput1" [(ngModel)]="assistanceIndustry" required>
+                <label for="assistanceInput1">Industry</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="assistanceInput2" [(ngModel)]="assistanceName" required>
+                <label for="assistanceInput2">Your Name</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="assistanceInput2"  [(ngModel)]="assistanceEmail" required>
+                <label for="assistanceInput2">Your Email Address</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="assistanceInput2" [(ngModel)]="assistancePhone" required>
+                <label for="assistanceInput2">Your Phone Number</label>
+              </div>
+              <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" [(ngModel)]="assistanceComments"></textarea>
+                <label for="floatingTextarea2">Additional Comments</label>
+              </div>
+              <div class="form-check form-switch custom-switch">
+                <label class="form-check-label" for="customSwitch">Include link to my LinkedIn</label>
+                <input class="form-check-input custom-checkbox" type="checkbox" id="customSwitch" [(ngModel)]="includeLinkedIn">
+              </div>
+              <div class="input-file mb-3 custom-file-container">
+                <label for="assistanceFileInput" class="form-label">
+                    <i class="fas fa-file"></i> <!-- File Icon -->
+                </label>
+                <input type="file" class="form-control custom-file-input" id="assistanceFileInput" accept="image/*" [(ngModel)]="fileToUpload" required>
+            </div>
+            
+            </div>
+            <div *ngIf="selectedTopic === 'Finance'">
+              <!-- Input fields for leadership -->
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="InterviewPrep1" [(ngModel)]="InterviewPrep1" required>
+                <label for="InterviewPrep1">Name</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="InterviewPrep2" [(ngModel)]="InterviewPrep2" required>
+                <label for="InterviewPrep2">Email</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="InterviewPrep3" [(ngModel)]="InterviewPrep3" required>
+                <label for="InterviewPrep3">Phone Number</label>
+              </div>
+              <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="InterviewPrep9" style="height: 100px" [(ngModel)]="InterviewPrep9"></textarea>
+                <label for="InterviewPrep9">Additional Comments</label>
+              </div>
+            </div>
+           
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary custom-button" (click)="submitForm()">Request a Session</button>
+          <button type="button" class="btn btn-primary custom-button">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  

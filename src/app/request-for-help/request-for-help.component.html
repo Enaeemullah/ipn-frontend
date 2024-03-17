@@ -1,0 +1,210 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card custom-card">
+          <div class="row no-gutters">
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="card-title">Want to receive one-on-one coaching and assistance?</h5>
+                <p class="card-text">Jump start your professional journey by meeting with one of IPN’s hand-picked coaches and gain valuable insights in how to position yourself for success in the corporate world.</p>
+                <button type="button" class="btn" (click)="openModal()">
+                  Meet with a coach
+                </button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <img src="./../assets/Ipn-demo.jpeg" class="card-img" alt="Placeholder Image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" #coachingModal tabindex="-1" role="dialog" aria-labelledby="coachingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title center text-center" id="exampleModalLabel">How can we assist you?</h5>
+        </div>
+        <div class="modal-body">
+          <p>If you require a 1-on-1 session or need more personalized assistance, you can submit a request to meet virtually with one of our coaches. As we have a lot of submissions, please allow 24 to 48 hours for us to respond to your request.</p>
+          <div class="container">
+            <div class="form-group input-label">
+              <select class="form-control mb-3 with-arrow" id="topicOfAssistance" [(ngModel)]="selectedTopic" (change)="onTopicSelectionChange()" required>
+                <option value="assistance" selected>Resume Review</option>
+                <option value="Interviewprep">Interview Preparations</option>
+                <option value="jobreferral">Job Referral</option>
+                <option value="mentorship">Mentorship</option>
+                <!-- Add more options as needed -->
+              </select>
+              
+            </div>
+          
+            <!-- Render different sets of input fields based on selected topic -->
+            <div *ngIf="selectedTopic === 'assistance'">
+              <!-- Input fields for assistance -->
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="assistanceInput1" [(ngModel)]="assistanceIndustry" required>
+                <label for="assistanceInput1">Industry<span class="text-danger"> * </span></label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="assistanceInput2" [(ngModel)]="assistanceName" required>
+                <label for="assistanceInput2">Your Name<span class="text-danger"> * </span></label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="assistanceInput2"  [(ngModel)]="assistanceEmail" required>
+                <label for="assistanceInput2">Your Email Address<span class="text-danger"> * </span></label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="assistanceInput2" [(ngModel)]="assistancePhone" required>
+                <label for="assistanceInput2">Your Phone Number<span class="text-danger"> * </span></label>
+              </div>
+              <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" [(ngModel)]="assistanceComments"></textarea>
+                <label for="floatingTextarea2">Additional Comments</label>
+              </div>
+              <div class="form-check form-switch custom-switch">
+                <label class="form-check-label" for="customSwitch">Include link to my LinkedIn</label>
+                <input class="form-check-input custom-checkbox" type="checkbox" id="customSwitch" [(ngModel)]="includeLinkedIn">
+              </div>
+              <div class="input-file mb-3 custom-file-container">
+                <label for="assistanceFileInput" class="form-label">
+                    <i class="fas fa-file"></i> <!-- File Icon -->
+                    <span class="text-danger"> * </span></label>
+                <input type="file" class="form-control custom-file-input" id="assistanceFileInput" accept=".pdf" (change)="handleFileInput($event)" required>
+            </div>
+            
+            </div>
+            <div *ngIf="selectedTopic === 'Interviewprep'">
+              <!-- Input fields for leadership -->
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="InterviewPrep1" [(ngModel)]="InterviewPrep1" required>
+                <label for="InterviewPrep1">Name</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="InterviewPrep2" [(ngModel)]="InterviewPrep2" required>
+                <label for="InterviewPrep2">Email</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="InterviewPrep3" [(ngModel)]="InterviewPrep3" required>
+                <label for="InterviewPrep3">Phone Number</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="InterviewPrep4" [(ngModel)]="InterviewPrep4" required>
+                <label for="InterviewPrep4">Current Role</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="InterviewPrep5" [(ngModel)]="InterviewPrep5" required>
+                <label for="InterviewPrep5">Current Company</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="InterviewPrep6" [(ngModel)]="InterviewPrep6" required>
+                <label for="InterviewPrep6">Interested Role</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="InterviewPrep7" [(ngModel)]="InterviewPrep7" required>
+                <label for="InterviewPrep7">Interested Company</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="InterviewPrep8" [(ngModel)]="InterviewPrep8" required>
+                <label for="InterviewPrep8">Interested Industry</label>
+              </div>
+              <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="InterviewPrep9" style="height: 100px" [(ngModel)]="InterviewPrep9"></textarea>
+                <label for="InterviewPrep9">Additional Comments</label>
+              </div>
+            </div>
+            <div *ngIf="selectedTopic === 'jobreferral'">
+              <!-- Input fields for career -->
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="careerInput1" [(ngModel)]="careerInput1" required>
+                <label for="careerInput1">Name</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="careerInput2" [(ngModel)]="careerInput2" required>
+                <label for="careerInput2">Email</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="careerInput3" [(ngModel)]="careerInput3" required>
+                <label for="careerInput3">Phone Number</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="careerInput4" [(ngModel)]="careerInput4" required>
+                <label for="careerInput4">Current Role </label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="careerInput5" [(ngModel)]="careerInput5" required>
+                <label for="careerInput5">Current Company</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="careerInput6" [(ngModel)]="careerInput6" required>
+                <label for="careerInput6">Interested Role</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="careerInput7" [(ngModel)]="careerInput7" required>
+                <label for="careerInput7">Interested Company</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="careerInput8" [(ngModel)]="careerInput8" required>
+                <label for="careerInput8">Interested Industry</label>
+              </div>
+              <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="careerInput9" style="height: 100px" [(ngModel)]="careerInput9"></textarea>
+                <label for="careerInput9">Additional Comments</label>
+              </div>
+            </div>
+            <div *ngIf="selectedTopic === 'mentorship'">
+              <!-- Input fields for career -->
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="mentorship1" [(ngModel)]="mentorship1" required>
+                <label for="mentorship1">Name</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="mentorship2" [(ngModel)]="mentorship2" required>
+                <label for="mentorship2">Email</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="mentorship3" [(ngModel)]="mentorship3" required>
+                <label for="mentorship3">Phone Number</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="mentorship4" [(ngModel)]="mentorship4" required>
+                <label for="mentorship4">Current Role</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="mentorship5" [(ngModel)]="mentorship5" required>
+                <label for="mentorship5">Current Company</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="mentorship6" [(ngModel)]="mentorship6" required>
+                <label for="mentorship6">Interested Role</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="mentorship7" [(ngModel)]="mentorship7" required>
+                <label for="mentorship7">Interested Company</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control mb-3" id="mentorship8" [(ngModel)]="mentorship8" required>
+                <label for="mentorship8">Interested Industry</label>
+              </div>
+              <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="mentorship9" style="height: 100px" [(ngModel)]="mentorship9"></textarea>
+                <label for="mentorship9">Additional Comments</label>
+              </div>
+            </div>
+            <!-- Add more *ngIf blocks for other topics -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary custom-button" (click)="submitForm()">Request a Session</button>
+          <button type="button" class="btn btn-primary custom-button">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  
