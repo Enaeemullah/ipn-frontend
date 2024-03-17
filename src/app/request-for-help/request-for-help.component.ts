@@ -7,7 +7,7 @@ declare var $: any;
   templateUrl: './request-for-help.component.html',
   styleUrls: ['./request-for-help.component.css']
 })
-export class RequestForHelpComponent implements OnInit {
+export class RequestForHelpComponent {
   formSubmitted: boolean = false;
 
   assistanceIndustry: string = "";
@@ -61,9 +61,6 @@ export class RequestForHelpComponent implements OnInit {
   mentorship9: string | undefined;
 
   constructor(private http: HttpClient) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 
   onTopicSelectionChange() {
     // Reset input fields when topic changes
@@ -118,34 +115,68 @@ export class RequestForHelpComponent implements OnInit {
       assistancePhone: this.assistancePhone,
       assistanceComments: this.assistanceComments,
       includeLinkedIn: this.includeLinkedIn,
-      fileToUpload: this.fileToUpload
-    });
-  
-    // Create FormData object
-    // const payload: FormData = new FormData();
-    // payload.append('selectedTopic', this.selectedTopic);
-    // payload.append('assistanceIndustry', this.assistanceIndustry);
-    // payload.append('assistanceName', this.assistanceName);
-    // payload.append('assistanceEmail', this.assistanceEmail);
-    // payload.append('assistancePhone', this.assistancePhone);
-    // payload.append('assistanceComments', this.assistanceComments);
-    // payload.append('includeLinkedIn', this.includeLinkedIn.toString());
-  
-    // if (this.fileToUpload) {
-    //   // Append the File object itself, not just the file name
-    //   payload.append('fileToUpload', this.fileToUpload);
-    // }
-
-    const payload = {
-      selectedTopic: this.selectedTopic,
-      assistanceIndustry: this.assistanceIndustry,
-      assistanceName: this.assistanceName,
-      assistanceEmail: this.assistanceEmail,
-      assistancePhone: this.assistancePhone,
-      assistanceComments: this.assistanceComments,
-      includeLinkedIn: this.includeLinkedIn,
       fileToUpload: this.fileToUpload?.name
+    });
+
+
+    let payload: any = {
+      selectedTopic: this.selectedTopic
     };
+     switch (this.selectedTopic) {
+      case 'assistance':
+        payload.assistance = {
+          industry: this.assistanceIndustry,
+          name: this.assistanceName,
+          email: this.assistanceEmail,
+          phone: this.assistancePhone,
+          comments: this.assistanceComments,
+          includeLinkedIn: this.includeLinkedIn,
+          fileUpload: this.fileToUpload?.name
+        };
+        break;
+      case 'Interviewprep':
+        payload.Interviewprep = {
+          name: this.InterviewPrep1,
+          email: this.InterviewPrep2,
+          phone: this.InterviewPrep3,
+          currentRole: this.InterviewPrep4,
+          currentCompany: this.InterviewPrep5,
+          interetedRole: this.InterviewPrep6,
+          InterestedCompany: this.InterviewPrep7,
+          industry: this.InterviewPrep8,
+          comment: this.InterviewPrep9
+        };
+        break;
+      case 'jobreferral':
+        payload.jobreferral = {
+          name: this.careerInput1,
+          email: this.careerInput2,
+          phone: this.careerInput3,
+          currentRole: this.careerInput4,
+          currentCompany: this.careerInput5,
+          interetedRole: this.careerInput6,
+          InterestedCompany: this.careerInput7,
+          industry: this.careerInput8,
+          Comment: this.careerInput9
+        };
+        break;
+      case 'mentorship':
+        payload.mentorship = {
+          name: this.mentorship1,
+          email: this.mentorship2,
+          phone: this.mentorship3,
+          currentRole: this.mentorship4,
+          currentCompany: this.mentorship5,
+          interetedRole: this.mentorship6,
+          InterestedCompany: this.mentorship7,
+          industry: this.mentorship8,
+          comment: this.mentorship9
+        };
+        break;
+      default:
+        console.error('Invalid selected topic:', this.selectedTopic);
+        return;
+    }
   
     console.log('Payload before sending:', payload);
   
